@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { ArrowLeft, Check, CirclePlus } from 'lucide-react'
 import Button from '@/components/Button'
 
+
 const COLORS = [
   { name: 'Red', color: '#FF3B30' },
   { name: 'Orange', color: '#FF9500' },
@@ -40,7 +41,7 @@ export default function TaskForm({
 
   return (
     <form
-      className='flex flex-col gap-6 w-[736px] mx-auto bg-[#1a1a1a] rounded'
+      className='flex flex-col gap-6 w-[736px] mx-auto bg-[color:var(--color-background)] rounded'
       onSubmit={handleSubmit}
     >
       <Button
@@ -51,7 +52,7 @@ export default function TaskForm({
         <ArrowLeft />
       </Button>
       <label className='flex flex-col gap-2'>
-        <span className='font-inter font-bold text-[14px] leading-[100%] text-[#4EA8DE] mb-[10px]'>
+        <span className='font-inter font-bold text-[14px] leading-[100%] text-[color:var(--color-primary)] mb-[10px]'>
           Title
         </span>
         <input
@@ -59,12 +60,12 @@ export default function TaskForm({
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder='Ex. Brush your teeth'
-          className='w-[736px] h-[52px] rounded-[8px] border border-[#333333] p-4 bg-[#262626] text-[#787878] font-inter font-normal text-[14px] leading-[140%] shadow-[0px_2px_8px_0px_#0000000F] focus:outline-none placeholder-[#787878] placeholder:font-inter placeholder:font-normal placeholder:text-[14px] placeholder:leading-[140%]'
+          className='w-[736px] h-[52px] rounded-[8px] border border-[color:var(--color-border)] p-4 bg-[color:var(--color-message)] text-[color:var(--color-text-4)] font-inter font-normal text-[14px] leading-[140%] shadow-[0px_2px_8px_0px_#0000000F] focus:outline-none placeholder-[color:var(--color-text-4] placeholder:font-inter placeholder:font-normal placeholder:text-[14px] placeholder:leading-[140%]'
           required
         />
       </label>
       <label className='flex flex-col gap-2 mb-[20px]'>
-        <span className='font-inter font-bold text-[14px] leading-[100%] text-[#4EA8DE] mb-[10px]'>
+        <span className='font-inter font-bold text-[14px] leading-[100%] text-[color:var(--color-primary)] mb-[10px]'>
           Color
         </span>
         <div className='flex items-center w-[596px] h-[52px] gap-4'>
@@ -89,7 +90,7 @@ export default function TaskForm({
       </label>
       <Button
         type='submit'
-        className='w-full flex items-center justify-center gap-2 font-inter font-bold text-[14px] leading-[140%] text-[#F2F2F2] mb-[50px]'
+        className='w-full flex items-center justify-center gap-2 font-inter font-bold text-[14px] leading-[140%] text-[color:var(--color-text-1)] mb-[50px]'
       >
         {isEdit ? (
           <>

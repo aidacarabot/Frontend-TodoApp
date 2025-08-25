@@ -24,7 +24,7 @@ export default function Button({
         w-[736px] h-[52px] flex items-center justify-center gap-2
         rounded-[8px]  opacity-100
         font-semibold transition-colors
-        bg-[#1E6F9F] text-white hover:bg-[#175478] disabled:opacity-50 hover:cursor-pointer
+        bg-[color:var(--color-button)] text-white hover:bg-[color:var(--color-button-hover)] disabled:opacity-50 hover:cursor-pointer
         ${className}
       `}
     >

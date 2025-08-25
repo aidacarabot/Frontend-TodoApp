@@ -2,5 +2,27 @@
 
 
 
+@import 'tailwindcss';
+
+:root {
+  /* COLORS */
+  --color-primary: #4EA8DE;
+  --color-secondary: #5E60CE;
+  --color-header:#0d0d0d;
+  --color-background: #1a1a1a;
+  --color-border: #333333;
+  --color-button: #1E6F9F;
+  --color-button-hover: #175478;
+  --color-icon: #3d3d3d;
+  --color-message: #262626;
+  --color-text-1: #F2F2F2;
+  --color-text-2: #6d6d6d;
+  --color-text-3: #808080;
+  --color-text-4: #787878;
+  --color-text-5: #D9D9D9;
+}
+
+
+
 
 

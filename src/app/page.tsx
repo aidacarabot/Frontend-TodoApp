@@ -43,14 +43,14 @@ export default function HomePage() {
   }
 
   return (
-    <main className='min-h-screen flex flex-col bg-[#1a1a1a]'>
+    <main className='min-h-screen flex flex-col bg-[color:var(--color-background)]'>
       <Title />
       <div className='flex-1 flex flex-col items-center'>
         <div className='main-container w-[736px] bg-black flex flex-col items-center'>
           {!showForm && (
             <>
               <Button
-                className='w-full flex items-center justify-center gap-2 font-inter font-bold text-[14px] leading-[140%] text-[#F2F2F2]'
+                className='w-full flex items-center justify-center gap-2 font-inter font-bold text-[14px] leading-[140%] text-[color:var(--color-text-1)]'
                 onClick={() => {
                   setEditTask(null)
                   setShowForm(true)
