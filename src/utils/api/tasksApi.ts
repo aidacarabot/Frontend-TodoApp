@@ -1,4 +1,4 @@
-const BASE_URL = 'https://backend-todoapp-j408.onrender.com' //change here to localhost if the server is not working correctly 
+const BASE_URL = 'http://localhost:3001' //change here to localhost if the server is not working correctly 
 
 export type Task = {
   id: number
