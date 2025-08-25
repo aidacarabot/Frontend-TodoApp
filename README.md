@@ -1,4 +1,3 @@
-
 # 📝 Todo List App – Front-End
 
 Welcome to the **Fullstack Take-Home Test: Todo List App**!  
@@ -10,29 +9,38 @@ This project is part of a challenge to build a simple, clean, and functional Tod
 
 - **Frontend:** Next.js (App Router), TypeScript, Tailwind CSS
 - **Backend:** Express.js, Prisma, MySQL ([Backend Repo](https://github.com/aidacarabot/Backend-TodoApp))
-- **Features:** Add, edit, complete, and delete tasks. Responsive UI. Modular components.  
+- **Features:** Add, edit, complete, and delete tasks. Responsive UI. Modular components.
 - **Best Practices:** Clean, modular code, validation, error handling, and user feedback.
+
+---
+
+## 🌐 Live Demo
+
+You can see the project deployed on Vercel here:  
+👉 [https://frontend-todo-app-pi.vercel.app/](https://frontend-todo-app-pi.vercel.app/)
+
+> **Note:**  
+> The deployed app uses the public backend hosted on Render. This backend can be **very slow** due to cold starts and free tier limitations.  
+> If you prefer a faster experience, follow the instructions below to run your own backend locally.
 
 ---
 
 ## ✨ Loader & Backend Performance
 
-> **ℹ️ Note:**  
-> This app includes a loading spinner (Loader) for a better UI/UX experience.  
-> The default backend is hosted on [Render](https://backend-todoapp-j408.onrender.com) and can be **very slow** (cold starts, free tier).  
-> The Loader will appear during all fetch operations to give users feedback while waiting for data.
+This app includes a loading spinner (Loader) for a better UI/UX experience.  
+The Loader will appear during all fetch operations to give users feedback while waiting for data, especially when using the slow public backend.
 
-### 🔗 Backend Options
+---
 
-#### 1️⃣ Use the public backend (slow, but no setup required)
+## 🔗 How to Use the App
 
-- Default API base URL:
-  ```
-  https://backend-todoapp-j408.onrender.com
-  ```
-  as the API base URL. You can use this endpoint, but expect slow response times.
+### 1️⃣ Option 1: Use the Live Demo (Vercel + Render)
 
-#### 2️⃣ Run your own backend locally (⚡ recommended for best experience)
+- Just visit [https://frontend-todo-app-pi.vercel.app/](https://frontend-todo-app-pi.vercel.app/)
+- **No setup required.**
+- **Note:** The backend is slow (see above).
+
+### 2️⃣ Option 2: Run Your Own Backend Locally (⚡ Recommended for Best Experience)
 
 1. Go to the backend repository: [https://github.com/aidacarabot/Backend-TodoApp](https://github.com/aidacarabot/Backend-TodoApp)
 2. Clone the repo and install dependencies:
@@ -55,8 +63,6 @@ This project is part of a challenge to build a simple, clean, and functional Tod
 
 ---
 
-This will make all API requests much faster and improve your development experience.
-
 ## 🛠️ Features
 
 - View, create, edit, complete, and delete tasks
@@ -74,14 +80,12 @@ This will make all API requests much faster and improve your development experie
 - `globals.css` – Global styles (Tailwind CSS).  
   **Note:** In `globals.css` you will find custom Tailwind CSS tags (CSS variables and utility classes) to make editing and customizing the project and its components much easier and more maintainable.
 
-
 ## 📡 API Endpoints (Expected from Back-End)
 
 - `GET /tasks` – List all tasks
 - `POST /tasks` – Create a new task
 - `PUT /tasks/:id` – Update a task
 - `DELETE /tasks/:id` – Delete a task
-
 
 ## 📝 Notes
 
@@ -90,12 +94,10 @@ This will make all API requests much faster and improve your development experie
 - UI is fully responsive and matches the provided Figma design.
 - Basic validation and error handling are implemented.
 
-
 ## 📜 License
 
 Developed by Aida Carabot.
 
 ---
-
 
 **See the back-end repository for API and database setup instructions.**
