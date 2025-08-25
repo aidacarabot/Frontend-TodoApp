@@ -1,37 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Todo List App – Front-End
+
+This repository contains the **Front-End** for the Fullstack Take-Home Test: Todo List App, built with **Next.js (App Router)**, **TypeScript**, and **Tailwind CSS**.
+
+## Features
+
+- View a list of tasks with:
+  - Title
+  - Completion toggle (checkbox)
+  - Delete button (with confirmation)
+- Create new tasks (with title and color)
+- Edit existing tasks (title and color)
+- Mark tasks as completed/not completed directly from the home view
+- Responsive, clean UI following the [Figma Design](https://www.figma.com/design/yibPNbHsKQBYWfUL58C2Su/Todo-App-Test-Task--Copy-?node-id=0-1&t=ioy3Dkz5LNSBDb5t-1)
+- Task summary: "Tasks: X" and "Completed: Y of X"
+- Modular, reusable React components
+
+## Tech Stack
+
+- [Next.js (App Router)](https://nextjs.org/docs/app)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js (v18+ recommended)
+- npm or yarn
+- The [Back-End API](https://github.com/your-backend-repo) running locally (see back-end repo for setup)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone this repository:**
+   ```bash
+   git clone https://github.com/your-frontend-repo.git
+   cd Frontend-TodoApp
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+3. **Configure API URL:**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   - If needed, update the API base URL in `src/utils/api/tasksApi.ts` to match your back-end server address.
 
-## Learn More
+4. **Run the development server:**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+   The app will be available at [http://localhost:3000](http://localhost:3000).
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `src/app/` – Main app entry, layout, and pages
+- `src/components/` – Reusable UI components (TaskBox, TaskForm, TaskList, etc.)
+- `src/utils/api/` – API client for tasks
+- `globals.css` – Global styles (Tailwind CSS)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## API Endpoints (Expected from Back-End)
 
-## Deploy on Vercel
+- `GET /tasks` – List all tasks
+- `POST /tasks` – Create a new task
+- `PUT /tasks/:id` – Update a task
+- `DELETE /tasks/:id` – Delete a task
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# Backend-TodoApp
+- All code is written in TypeScript.
+- UI is fully responsive and matches the provided Figma design.
+- Basic validation and error handling are implemented.
+
+## License
+
+This project is for evaluation purposes only.
+
+---
+
+**See the back-end repository for API and database setup instructions.**

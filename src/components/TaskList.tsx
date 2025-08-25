@@ -4,31 +4,49 @@ import NoTasks from '@/components/NoTasks'
 import { Task, deleteTask, updateTask } from '@/utils/api/tasksApi'
 import { useState } from 'react'
 import Message from '@/components/Message'
+import Loader from '@/components/Loader'
 
 type TaskListProps = {
   tasks: Task[]
   setTasks: (tasks: Task[]) => void
   onEditTask: (task: Task) => void
+  setIsLoading?: (loading: boolean) => void
 }
 
 export default function TaskList({
   tasks,
   setTasks,
-  onEditTask
+  onEditTask,
+  setIsLoading
 }: TaskListProps) {
   const [message, setMessage] = useState<string | null>(null)
+  const [isLocalLoading, setIsLocalLoading] = useState(false)
 
   const handleDelete = async (id: number) => {
-    await deleteTask(id)
-    setTasks(tasks.filter((t) => t.id !== id))
-    setMessage('Task deleted!')
+    setIsLocalLoading(true)
+    if (setIsLoading) setIsLoading(true)
+    try {
+      await deleteTask(id)
+      setTasks(tasks.filter((t) => t.id !== id))
+      setMessage('Task deleted!')
+    } finally {
+      setIsLocalLoading(false)
+      if (setIsLoading) setIsLoading(false)
+    }
   }
 
   const handleToggle = async (id: number, completed: boolean) => {
     const task = tasks.find((t) => t.id === id)
     if (!task) return
-    await updateTask(id, { title: task.title, color: task.color, completed })
-    setTasks(tasks.map((t) => (t.id === id ? { ...t, completed } : t)))
+    setIsLocalLoading(true)
+    if (setIsLoading) setIsLoading(true)
+    try {
+      await updateTask(id, { title: task.title, color: task.color, completed })
+      setTasks(tasks.map((t) => (t.id === id ? { ...t, completed } : t)))
+    } finally {
+      setIsLocalLoading(false)
+      if (setIsLoading) setIsLoading(false)
+    }
   }
 
   return (
@@ -37,10 +55,7 @@ export default function TaskList({
       <div className='list-container'>
         <div className='task-list-number'>
           <p className='p-tasks'>
-            Tasks{' '}
-            <span className='span-task-number'>
-              {tasks.length}
-            </span>
+            Tasks <span className='span-task-number'>{tasks.length}</span>
           </p>
           <p className='p-completed'>
             Completed{' '}
@@ -65,6 +80,7 @@ export default function TaskList({
           )}
         </div>
       </div>
+      {isLocalLoading && <Loader />}
     </>
   )
 }
