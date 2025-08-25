@@ -1,103 +1,88 @@
-import Image from "next/image";
+'use client'
+import { useState, useEffect } from 'react'
+import Title from '../components/Title'
+import TaskList from '@/components/TaskList'
+import TaskForm from '@/components/TaskForm'
+import Button from '@/components/Button'
+import { CirclePlus } from 'lucide-react'
+import { getTasks, createTask, updateTask, Task } from '@/utils/api/tasksApi'
+import Footer from '@/components/Footer'
 
-export default function Home() {
+export default function HomePage() {
+  const [showForm, setShowForm] = useState(false)
+  const [tasks, setTasks] = useState<Task[]>([])
+  const [editTask, setEditTask] = useState<Task | null>(null)
+
+  useEffect(() => {
+    getTasks().then(setTasks)
+  }, [])
+
+  const handleCreateTask = async (data: { title: string; color: string }) => {
+    await createTask({ title: data.title, color: data.color, completed: false })
+    const updatedTasks = await getTasks()
+    setTasks(updatedTasks)
+    setShowForm(false)
+  }
+
+  const handleEditTask = async (data: { title: string; color: string }) => {
+    if (!editTask) return
+    await updateTask(editTask.id, {
+      title: data.title,
+      color: data.color,
+      completed: editTask.completed
+    })
+    const updatedTasks = await getTasks()
+    setTasks(updatedTasks)
+    setEditTask(null)
+    setShowForm(false)
+  }
+
+  const handleEditClick = (task: Task) => {
+    setEditTask(task)
+    setShowForm(true)
+  }
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+    <main className='min-h-screen flex flex-col bg-[#1a1a1a]'>
+      <Title />
+      <div className='flex-1 flex flex-col items-center'>
+        <div className='main-container w-[736px] bg-black flex flex-col items-center'>
+          {!showForm && (
+            <>
+              <Button
+                className='w-full flex items-center justify-center gap-2 font-inter font-bold text-[14px] leading-[140%] text-[#F2F2F2]'
+                onClick={() => {
+                  setEditTask(null)
+                  setShowForm(true)
+                }}
+              >
+                Create Task <CirclePlus size={16} />
+              </Button>
+              <TaskList
+                tasks={tasks}
+                setTasks={setTasks}
+                onEditTask={handleEditClick}
+              />
+            </>
+          )}
+          {showForm && (
+            <TaskForm
+              onGoBack={() => {
+                setEditTask(null)
+                setShowForm(false)
+              }}
+              onSubmit={editTask ? handleEditTask : handleCreateTask}
+              initialTask={
+                editTask
+                  ? { title: editTask.title, color: editTask.color }
+                  : undefined
+              }
+              isEdit={!!editTask}
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          )}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+      </div>
+      <Footer />
+    </main>
+  )
 }
