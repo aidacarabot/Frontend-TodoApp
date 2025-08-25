@@ -16,7 +16,7 @@ export default function TaskBox({
 }: TaskBoxProps) {
   return (
     <div
-      className='flex items-center justify-between w-[736px] h-[72px] gap-3 rounded-[8px] border border-[color:var(--color-border)] bg-[color:var(--color-message)] p-4 mb-2 opacity-100 cursor-pointer'
+      className='task-item-div'
       style={{ borderLeftColor: task.color, borderLeftWidth: 4 }}
       onClick={onEdit}
     >
@@ -41,7 +41,7 @@ export default function TaskBox({
         {task.title}
       </span>
       <button
-        className='ml-3 text-[color:var(--color-text-3)] hover:text-red-500 transition-colors cursor-pointer'
+        className='btn-delete'
         onClick={(e) => {
           e.stopPropagation()
           onDelete(task.id)

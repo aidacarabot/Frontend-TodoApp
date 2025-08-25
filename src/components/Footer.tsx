@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className='w-full flex flex-col items-center justify-center py-6 bg-[color:var(--color-header)] mt-8'>
+    <footer className='footer-div'>
       <p className='text-[color:var(--color-text-2)] font-inter font-bold text-[14px] leading-[140%] text-center'>
         Made by Aida Carabot
       </p>

@@ -12,8 +12,8 @@ export default function Message({ text, onClose }: MessageProps) {
   }, [onClose])
 
   return (
-    <div className='fixed inset-0 flex items-center justify-center z-50'>
-      <div className='bg-[color:var(--color-message)] text-[color:var(--color-text-1)] px-6 py-3 rounded-[8px] shadow-lg font-inter font-bold text-[14px]'>
+    <div className='message-div'>
+      <div className='message-content'>
         {text}
       </div>
     </div>
